@@ -77,6 +77,9 @@ namespace CLRS
         /// <summary>
         /// first call -> MergeSort(list, 0, list.Count - 1)
         /// </summary>
+        /// <param name="list">list to sort</param>
+        /// <param name="p">from index</param>
+        /// <param name="r">to index</param>
         public static void MergeSort(IList<double> list, int p, int r)
         {
             if (p >= r) return;
