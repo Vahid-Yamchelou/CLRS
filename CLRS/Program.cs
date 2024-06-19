@@ -4,8 +4,8 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        List<double> list = new() { 1, 100, 4, 10.5, 324, 10, 10, 4, 8};
-        SortAlgorithms.InsertionSort(list);
+        List<double> list = new() {3, 2, 8, 1, 5, 4, 6, 7};
+        SortAlgorithms.MergeSort(list, 0, list.Count - 1);
 
         foreach (double d in list)
         {
