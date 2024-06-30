@@ -88,5 +88,80 @@ namespace CLRS
             MergeSort(list, q+1, r);
             Merge(list, p, q, r);
         }
+
+        public static void HeapSort(double[] list)
+        {
+            HeapSort heap = new(list);
+            heap.Sort();
+        }
+    }
+
+    class HeapSort
+    {
+        double[] list;
+        int heapSize;
+
+        public HeapSort(double[] arr)
+        {
+            list = arr;
+            heapSize = arr.Length;
+            BuildMaxHeap();
+        }
+
+        public int Left(int i)
+        {
+            return (2 * i) + 1;
+        }
+
+        public int Right(int i)
+        {
+            return (2 * i) + 2;
+        }
+
+        public void MaxHeapify(int i)
+        { 
+            int l = Left(i);
+            int r = Right(i);
+            int largest = i;
+
+            if (l < heapSize && list[l] > list[i])
+            {
+                largest = l;
+            }
+
+            if (r < heapSize && list[r] > list[largest])
+            {
+                largest = r;
+            }
+
+            if (largest != i)
+            {
+                double temp = list[i];
+                list[i] = list[largest];
+                list[largest] = temp;
+                MaxHeapify(largest);
+            }
+        }
+
+        private void BuildMaxHeap()
+        {
+            for (int i = (list.Length / 2) - 1; i >= 0; i--)
+            {
+                MaxHeapify(i);
+            }
+        }
+
+        public void Sort()
+        {
+            for (int i = list.Length - 1; i > 0; i--)
+            {
+                double temp = list[i];
+                list[i] = list[0];
+                list[0] = temp;
+
+                heapSize--;
+                MaxHeapify(0);
+            }
+        }
     }
 }
